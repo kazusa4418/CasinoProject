@@ -1,0 +1,2 @@
+git remote add origin git@github.com:kazusa4418/CasinoProject.git
+
