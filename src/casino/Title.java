@@ -1,5 +1,6 @@
 package casino;
 
+import util.ConsoleControl;
 import util.Save;
 import util.Checker;
 import java.io.File;
@@ -28,12 +29,20 @@ public class Title {
             if (pl.getPlayData().isGUEST()) {
                 //GUESTであればセーブを行わずインスタンスを破棄する
                 pl = null;
+                System.out.println("タイトルへ戻ります。");
+
+                ConsoleControl.sleep(2000);
+                ConsoleControl.clearScreen();
                 Main.menu();
             }
-            System.out.println("セーブしてタイトルへ戻ります。\n");
+            System.out.println("セーブしてタイトルへ戻ります。");
             File file = Save.getFile(Main.fileNumber);
             PlayData myData = pl.getPlayData();
             Save.writeFile(file, myData);
+
+            ConsoleControl.sleep(2000);
+            ConsoleControl.clearScreen();
+
             Main.menu();
         }
     }

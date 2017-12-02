@@ -1,6 +1,7 @@
 package casino;
 
 import util.Checker;
+import util.ConsoleControl;
 import util.Save;
 
 import java.io.File;
@@ -26,6 +27,8 @@ public class Main {
         System.out.print("(数字で入力)\n> ");
         int command = Integer.parseInt(Checker.stringCheck(sc.nextLine(), "[12345]{1}"));
 
+        ConsoleControl.clearScreen();
+
         PlayData data = new PlayData("");
         if (command == 1) {
             data = new PlayData();
@@ -42,7 +45,7 @@ public class Main {
         } else {
             System.out.println("終了します。");
             try {
-                Thread.sleep(1000);
+                Thread.sleep(1500);
                 System.exit(0);
             } catch (InterruptedException e) {
                 System.out.println(e);
@@ -66,6 +69,9 @@ public class Main {
         PlayData newData = new PlayData(name);
         Save.writeFile(newFile, newData);
         System.out.println("セーブファイルを作成しました。");
+
+        ConsoleControl.sleep(2000);
+        ConsoleControl.clearScreen();
         menu();
     }
 
@@ -85,6 +91,10 @@ public class Main {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(readFile));) {
             PlayData readData = (PlayData) ois.readObject();
             System.out.println("セーブデータのロードに成功しました。\n");
+
+            ConsoleControl.sleep(2000);
+            ConsoleControl.clearScreen();
+
             return readData;
         } catch (IOException e) {
             System.err.println(e);

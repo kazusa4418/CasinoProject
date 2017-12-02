@@ -1,6 +1,7 @@
 package util;
 
 import data.Data;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -69,6 +70,8 @@ public class Save {
         File file = getFile(index);
         file.delete();
         System.out.println("セーブファイルを削除しました。");
+        ConsoleControl.sleep(2000);
+        ConsoleControl.clearScreen();
     }
 
     public static void deleteFile(int fileNumber) {
@@ -82,6 +85,9 @@ public class Save {
         //セーブデータがあるかどうかを判別
         if (!saveFolder.exists() || saveFolder.listFiles().length == 0) {
             System.out.println("セーブデータがありません。\n");
+
+            ConsoleControl.sleep(2000);
+            ConsoleControl.clearScreen();
             return 0;
         }
         File[] saveFiles = saveFolder.listFiles();
