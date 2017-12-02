@@ -1,0 +1,5 @@
+*.exe
+*.jar
+saves/
+lib/
+.idea/
