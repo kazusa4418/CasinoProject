@@ -179,6 +179,6 @@ public class BlackJackManager {
         stock.shuffle();
         hand.add(stock.getCard());
         hand.add(stock.getCard());
-        hand.sortCard(new CardSorter());
+        hand.sort(new CardSorter());
     }
 }

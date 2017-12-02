@@ -17,9 +17,9 @@ public class PokerManager {
     private static Scanner sc = new Scanner(System.in);
     private static Printer printer = new Printer();
 
-    //ƒJ[ƒh‚ÌƒXƒ^ƒbƒN
+    //ï¿½Jï¿½[ï¿½hï¿½ÌƒXï¿½^ï¿½bï¿½N
     public static CardStock stock = new CardStock();
-    //ƒvƒŒƒCƒ„[
+    //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[
     private static Player pl;
     private static ComPlayer com;
 
@@ -29,68 +29,68 @@ public class PokerManager {
     }
 
     public void runGame() {
-        printer.println("ƒ|[ƒJ[‚ğn‚ß‚é‚æI");
-        //èD‚ğ”z‚é
+        printer.println("ï¿½|ï¿½[ï¿½Jï¿½[ï¿½ï¿½ï¿½nï¿½ß‚ï¿½ï¿½I");
+        //ï¿½ï¿½Dï¿½ï¿½zï¿½ï¿½
         distribute(pl.getHand());
         distribute(com.getHand());
-        //Q‰Á”ï‚ğ‚à‚ç‚¤
-        printer.println("‚Ü‚¸‚ÍQ‰Á”ï‚Åƒ`ƒbƒv‚ğ10–‡‚à‚ç‚¤‚ËB");
+        //ï¿½Qï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¤
+        printer.println("ï¿½Ü‚ï¿½ï¿½ÍQï¿½ï¿½ï¿½ï¿½Åƒ`ï¿½bï¿½vï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½ç‚¤ï¿½ËB");
         pl.lostChips(10);
-        printer.println("(ƒ`ƒbƒv‚ª10–‡Œ¸‚è‚Ü‚µ‚½B)");
-        //BET‚·‚é
+        printer.println("(ï¿½`ï¿½bï¿½vï¿½ï¿½10ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B)");
+        //BETï¿½ï¿½ï¿½ï¿½
         do {
-            System.out.print("‰½–‡BET‚·‚éH(Šƒ`ƒbƒv”:" + pl.getChips() + "–‡)\n> ");
+            System.out.print("ï¿½ï¿½ï¿½ï¿½BETï¿½ï¿½ï¿½ï¿½H(ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½bï¿½vï¿½ï¿½:" + pl.getChips() + "ï¿½ï¿½)\n> ");
             int bet = Integer.parseInt(Checker.stringCheck(sc.nextLine(), "[0-9]+"));
             pl.setBetChips(bet);
 
             if (pl.getBetChips() >= 0) {
                 break;
             }
-            System.out.println("‚¨‚âHŒN‚Í‚»‚ñ‚È‚Éƒ`ƒbƒv‚ğ‚Á‚Ä‚¢‚È‚¢‚æB");
+            System.out.println("ï¿½ï¿½ï¿½ï¿½Hï¿½Nï¿½Í‚ï¿½ï¿½ï¿½È‚Éƒ`ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½B");
         } while(true);
 
         int betChips = pl.getBetChips();
 
-        printer.println(betChips + "–‡‚¾‚ËB\n‚»‚ê‚¶‚á‚ Ÿ•‰‚ğn‚ß‚é‚æI");
-        System.out.println("‚ ‚È‚½‚ÌèD:");
+        printer.println(betChips + "ï¿½ï¿½ï¿½ï¿½ï¿½ËB\nï¿½ï¿½ï¿½ê‚¶ï¿½á‚ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nï¿½ß‚ï¿½ï¿½I");
+        System.out.println("ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ìï¿½D:");
         for (int i = 0; i < pl.getHand().size(); i++) {
             System.out.println((i + 1) + ": " + pl.getHand().get(i));
         }
-        //“ü‚ê‘Ö‚¦‚éèD‚ğ‘I‚Ô
+        //ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½ï¿½Dï¿½ï¿½Iï¿½ï¿½
         pl.handChengeOnPoker();
-        //ƒRƒ“ƒsƒ…[ƒ^‚ªèD‚ğ“ü‚ê‘Ö‚¦‚é
+        //ï¿½Rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½Ö‚ï¿½ï¿½ï¿½
         com.handChengeOnPoker();
-        //ƒvƒŒƒCƒ„[‚ÌèD‚ÆƒRƒ“ƒsƒ…[ƒ^‚ÌèD‚ğg‚Á‚ÄŸ•‰‚·‚é
+        //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½Dï¿½ÆƒRï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½Ìï¿½Dï¿½ï¿½ï¿½gï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         IsWinner result = battle(pl, com);
 
         switch (result) {
             case WIN:
-                printer.println("‚ ‚È‚½‚ÌŸ‚¿‚Å‚·I");
-                printer.println(betChips + "–‡‚ÌBET‚ª‚³‚ê‚Ä‚¢‚½‚Ì‚Å" + (betChips * 2) + "–‡‚ÌŠl“¾‚Å‚·I");
+                printer.println("ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½I");
+                printer.println(betChips + "ï¿½ï¿½ï¿½ï¿½BETï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½Ì‚ï¿½" + (betChips * 2) + "ï¿½ï¿½ï¿½ÌŠlï¿½ï¿½ï¿½Å‚ï¿½ï¿½I");
                 pl.getChips(betChips * 2);
                 break;
             case LOSE:
-                printer.println("‚ ‚È‚½‚Ì•‰‚¯‚Å‚·B");
-                printer.println(betChips + "–‡‚Ìƒ`ƒbƒv‚ğ¸‚¢‚Ü‚µ‚½B");
+                printer.println("ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì•ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B");
+                printer.println(betChips + "ï¿½ï¿½ï¿½Ìƒ`ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
                 pl.lostChips(betChips);
                 break;
             case DRAW:
-                printer.println("ˆø‚«•ª‚¯‚Å‚·B");
-                printer.println("BET‚µ‚½ƒ`ƒbƒv" + betChips + "–‡‚ª–ß‚Á‚Ä‚«‚Ü‚µ‚½B");
+                printer.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å‚ï¿½ï¿½B");
+                printer.println("BETï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½bï¿½v" + betChips + "ï¿½ï¿½ï¿½ï¿½ï¿½ß‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
                 pl.getChips(betChips);
                 break;
         }
-        //Ÿ•‰‚ªI‚í‚Á‚½‚Ì‚Å‚»‚ê‚¼‚ê‚ÌèD‚ğRD‚É–ß‚·
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ê‚¼ï¿½ï¿½Ìï¿½Dï¿½ï¿½ï¿½Rï¿½Dï¿½É–ß‚ï¿½
         retHand(pl.getHand());
         retHand(com.getHand());
 
-        printer.println("Šƒ`ƒbƒv”‚ª" + pl.getChips() + "‚É‚È‚è‚Ü‚µ‚½B");
-        //Šƒ`ƒbƒv‚ª0–‡‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚½‚çƒZ[ƒuƒf[ƒ^‚ğíœ‚·‚é
+        printer.println("ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½bï¿½vï¿½ï¿½ï¿½ï¿½" + pl.getChips() + "ï¿½É‚È‚ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½B");
+        //ï¿½ï¿½ï¿½ï¿½ï¿½`ï¿½bï¿½vï¿½ï¿½0ï¿½ï¿½ï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½[ï¿½uï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½
         if (pl.getChips() == 0) {
-            printer.println("‚ ‚êHƒ`ƒbƒv‚ª‚È‚­‚È‚Á‚¿‚á‚Á‚½‚ÌH");
-            printer.println("c”O‚¾‚¯‚Ç‚±‚Ì¢ŠE‚Å‚Íƒ`ƒbƒv‚ª‚È‚¢‚Æ—V‚×‚È‚¢‚ñ‚¾");
-            printer.println("ƒZ[ƒuƒf[ƒ^‚ğÁ‚³‚¹‚Ä‚à‚ç‚¤‚ËIII");
-            printer.println("(ƒZ[ƒuƒf[ƒ^‚ªíœ‚³‚ê‚Ü‚·B)\n(‚Ü‚½—V‚Ñ‚½‚¢‚È‚çÄ“xƒZ[ƒuƒf[ƒ^‚ğì¬‚µ‚Ä‚­‚¾‚³‚¢)");
+            printer.println("ï¿½ï¿½ï¿½ï¿½Hï¿½`ï¿½bï¿½vï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÌH");
+            printer.println("ï¿½cï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½Ç‚ï¿½ï¿½Ìï¿½ï¿½Eï¿½Å‚Íƒ`ï¿½bï¿½vï¿½ï¿½ï¿½È‚ï¿½ï¿½Æ—Vï¿½×‚È‚ï¿½ï¿½ï¿½");
+            printer.println("ï¿½Zï¿½[ï¿½uï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ç‚¤ï¿½ËIï¿½Iï¿½I");
+            printer.println("(ï¿½Zï¿½[ï¿½uï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½íœï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½B)\n(ï¿½Ü‚ï¿½ï¿½Vï¿½Ñ‚ï¿½ï¿½ï¿½ï¿½È‚ï¿½Ä“xï¿½Zï¿½[ï¿½uï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½ì¬ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)");
             if (pl.getPlayData().isGUEST()) {
                 pl = null;
                 Main.menu();
@@ -99,7 +99,7 @@ public class PokerManager {
             Main.menu();
         }
 
-        System.out.print("\ns“®‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢\n\n1: ‚à‚¤ˆê“x\n2: ƒ^ƒCƒgƒ‹‚Ö–ß‚é\n> ");
+        System.out.print("\nï¿½sï¿½ï¿½ï¿½ï¿½Iï¿½ï¿½Å‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\n\n1: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½x\n2: ï¿½^ï¿½Cï¿½gï¿½ï¿½ï¿½Ö–ß‚ï¿½\n> ");
         int command = Checker.numberCheck(sc.nextLine(), 2);
         if (command == 1) {
             runGame();
@@ -113,67 +113,67 @@ public class PokerManager {
         for (int i = 0; i < 5; i++) {
             hand.add(stock.getCard());
         }
-        hand.sortCard(new CardSorterOnPoker());
+        hand.sort(new CardSorterOnPoker());
     }
 
     public void showRole(Result result) {
         switch (result.getStrong()) {
             case 0:
-                System.out.println("ƒuƒ^");
+                System.out.println("ï¿½uï¿½^");
                 break;
             case 1:
-                System.out.println("1ƒyƒA");
+                System.out.println("1ï¿½yï¿½A");
                 break;
             case 2:
-                System.out.println("2ƒyƒA");
+                System.out.println("2ï¿½yï¿½A");
                 break;
             case 3:
-                System.out.println("3ƒJ[ƒh");
+                System.out.println("3ï¿½Jï¿½[ï¿½h");
                 break;
             case 4:
-                System.out.println("ƒXƒgƒŒ[ƒg");
+                System.out.println("ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½g");
                 break;
             case 5:
-                System.out.println("ƒtƒ‰ƒbƒVƒ…");
+                System.out.println("ï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½");
                 break;
             case 6:
-                System.out.println("ƒtƒ‹ƒnƒEƒX");
+                System.out.println("ï¿½tï¿½ï¿½ï¿½nï¿½Eï¿½X");
                 break;
             case 7:
-                System.out.println("4ƒJ[ƒh");
+                System.out.println("4ï¿½Jï¿½[ï¿½h");
                 break;
             case 8:
-                System.out.println("ƒXƒgƒŒ[ƒgƒtƒ‰ƒbƒVƒ…");
+                System.out.println("ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½gï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½");
                 break;
             case 9:
-                System.out.println("ƒƒCƒ„ƒ‹ƒXƒgƒŒ[ƒgƒtƒ‰ƒbƒVƒ…");
+                System.out.println("ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½gï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½");
                 break;
             case 10:
-                System.out.println("5ƒJ[ƒh");
+                System.out.println("5ï¿½Jï¿½[ï¿½h");
                 break;
         }
     }
 
-    //ŠeƒvƒŒƒCƒ„[‚ÌèD‚ğ—p‚¢‚ÄŸ•‰‚·‚é
+    //ï¿½eï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½Dï¿½ï¿½pï¿½ï¿½ï¿½Äï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     public IsWinner battle(Player pl, ComPlayer com) {
         Result plResult = Poker.handCheck(pl.getHand());
         Result comResult = Poker.handCheck(com.getHand());
 
-        //‚¨Œİ‚¢‚ÌèD‚ğƒ\[ƒg‚·‚é
-        pl.getHand().sortCard(new CardSorterOnPoker());
-        com.getHand().sortCard(new CardSorterOnPoker());
-        //‚¨Œİ‚¢‚ÌèD‚ğŒöŠJ‚µ‚ ‚Á‚ÄA–ğ‚ğ•\¦‚·‚é
+        //ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ìï¿½Dï¿½ï¿½ï¿½\ï¿½[ï¿½gï¿½ï¿½ï¿½ï¿½
+        pl.getHand().sort(new CardSorterOnPoker());
+        com.getHand().sort(new CardSorterOnPoker());
+        //ï¿½ï¿½ï¿½İ‚ï¿½ï¿½Ìï¿½Dï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÄAï¿½ï¿½ï¿½ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         System.out.println("******************************");
         System.out.println("SHOWDOWN!!\n");
-        System.out.print("‚ ‚È‚½‚ÌèD:");
+        System.out.print("ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ìï¿½D:");
         pl.showHand();
         showRole(plResult);
         System.out.println("\n");
-        System.out.print("ºİËß­°À‚ÌèD:");
+        System.out.print("ï¿½ï¿½ï¿½ß­ï¿½ï¿½ï¿½Ìï¿½D:");
         com.showHand();
         showRole(comResult);
         System.out.println("******************************");
-        //ó‚¯æ‚Á‚½ResultŒ^‚Ì•Ï”‚ğ—p‚¢‚ÄŸ”s”»’è‚ğs‚¤
+        //ï¿½ó‚¯ï¿½ï¿½ï¿½ï¿½Resultï¿½^ï¿½Ì•Ïï¿½ï¿½ï¿½pï¿½ï¿½ï¿½Äï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½
         IsWinner score = checkScore(plResult.getStrong(), comResult.getStrong());
         IsWinner firstStrong = checkFirstStrong(plResult.getFirstStrong().ordinal(),
                 comResult.getFirstStrong().ordinal());
@@ -188,7 +188,7 @@ public class PokerManager {
         }
         switch (plResult.getStrong()) {
             case 4:
-                //ƒXƒgƒŒ[ƒg“¯m‚Ì‚Æ‚«‚ÉŸ”s‚ğ‰º‚·
+                //ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½gï¿½ï¿½ï¿½mï¿½Ì‚Æ‚ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (firstStrong != IsWinner.DRAW) {
                     return firstStrong;
                 }
@@ -197,7 +197,7 @@ public class PokerManager {
                 }
                 return IsWinner.DRAW;
             case 5:
-                //ƒtƒ‰ƒbƒVƒ…“¯m‚Ì‚Æ‚«‚ÉŸ”s‚ğ‰º‚·
+                //ï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Ì‚Æ‚ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (strongMark != IsWinner.DRAW) {
                     return strongMark;
                 }
@@ -209,7 +209,7 @@ public class PokerManager {
                 }
                 return IsWinner.DRAW;
             case 8:
-                //ƒXƒgƒŒ[ƒgƒtƒ‰ƒbƒVƒ…“¯m‚Ì‚Æ‚«‚ÉŸ”s‚ğ‰º‚·
+                //ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½gï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Ì‚Æ‚ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (strongMark != IsWinner.DRAW) {
                     return strongMark;
                 }
@@ -221,17 +221,17 @@ public class PokerManager {
                 }
                 return IsWinner.DRAW;
             case 9:
-                //ƒƒCƒ„ƒ‹ƒXƒgƒŒ[ƒgƒtƒ‰ƒbƒVƒ…“¯m‚Ì‚Æ‚«‚ÉŸ”s‚ğ‰º‚·
-                //‚¢‚©‚³‚Ü‚ğ‚·‚é‚È‚¨‚Ü‚¦‚çIIIIIIIIIIIIIIIIII
+                //ï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½[ï¿½gï¿½tï¿½ï¿½ï¿½bï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½mï¿½Ì‚Æ‚ï¿½ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½Iï¿½I
                 boolean plExist = false;
                 boolean comExist = false;
-                //ƒvƒŒƒCƒ„[‚ÌèD‚ÉA‚ª‚ ‚ê‚Îtrue
+                //ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ìï¿½Dï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½true
                 for (Card card : pl.getHand()) {
                     if (card.getNumber() == CardNumber.num1) {
                         plExist = true;
                     }
                 }
-                //ƒRƒ“ƒsƒ…[ƒ^‚ÌèD‚ÉA‚ª‚ ‚ê‚Îtrue
+                //ï¿½Rï¿½ï¿½ï¿½sï¿½ï¿½ï¿½[ï¿½^ï¿½Ìï¿½Dï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½true
                 for (Card card : com.getHand()) {
                     if (card.getNumber() == CardNumber.num1) {
                         comExist = true;

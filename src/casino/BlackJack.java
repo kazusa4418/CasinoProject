@@ -14,7 +14,7 @@ class BlackJack {
 
     static int handCheck(Hand hand) {
         int sum = 0;
-        hand.sortCard(new CardSorter());
+        hand.sort(new CardSorter());
         for (Card card : hand) {
             sum += BlackJackManager.getNumberMap().get(card.getNumber());
         }

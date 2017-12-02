@@ -2,6 +2,11 @@ package util;
 
 import java.util.Scanner;
 
+/*入力に対してチェックを施すクラスです。
+* numberCheck(int int) : 入力された値が整数かどうかを判別します
+* numberCheck(String int) : 入力された値がStringであっても対応します
+* stringCheck(String String) : 入力された値のフォーマットをチェックします
+*/
 public class Checker {
     private static Scanner sc = new Scanner(System.in);
 
