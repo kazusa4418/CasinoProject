@@ -177,8 +177,8 @@ public class BlackJackManager {
     //初期手札を配るために用いられるstaticメソッド
     public static void distribute(Hand hand) {
         stock.shuffle();
-        hand.add(stock.getCard());
-        hand.add(stock.getCard());
+        hand.add(stock.takeCard());
+        hand.add(stock.takeCard());
         hand.sort(new CardSorter());
     }
 }

@@ -39,7 +39,7 @@ public class ComPlayer {
         //受け取ったリストを用いて、手札のカードを入れ替える
         for (int i = 0; i < result.size(); i++) {
             if (result.get(i)) {
-                hand.set(i, PokerManager.stock.getCard());
+                hand.set(i, PokerManager.stock.takeCard());
             }
         }
     }

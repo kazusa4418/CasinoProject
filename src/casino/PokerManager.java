@@ -111,7 +111,7 @@ public class PokerManager {
     public static void distribute(Hand hand) {
         stock.shuffle();
         for (int i = 0; i < 5; i++) {
-            hand.add(stock.getCard());
+            hand.add(stock.takeCard());
         }
         hand.sort(new CardSorterOnPoker());
     }

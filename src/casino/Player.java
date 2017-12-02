@@ -83,7 +83,7 @@ public class Player {
     //HIT : カードを一枚引く
     public void runHit() {
         printer.println("HITします。");
-        hand.add(BlackJackManager.stock.getCard());
+        hand.add(BlackJackManager.stock.takeCard());
     }
 
     //DOUBLE : 掛け金を二倍にしてカードを一枚引く
@@ -136,7 +136,7 @@ public class Player {
         //入力された値から手札のカードを入れ替える
         for (int i : number) {
             Card card = this.hand.get(i - 1);
-            this.hand.set(i - 1, PokerManager.getStock().getCard());
+            this.hand.set(i - 1, PokerManager.getStock().takeCard());
             PokerManager.stock.add(card);
         }
         PokerManager.stock.shuffle();

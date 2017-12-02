@@ -27,7 +27,7 @@ class Poker {
 
         //手札の最初のカードの数字とマークを保存しておく
         CardNumber firstNumber = hand.get(0).getNumber();
-        CardMark firstMark = hand.get(0).getMark();
+        CardSuit firstMark = hand.get(0).getSuit();
         //フラッシュがそろっていたらtrueが入る
         boolean flush = true;
         //ストレートがそろっていたらtrueが入る
@@ -44,7 +44,7 @@ class Poker {
 
         //フラッシュの役がそろっているか判定する
         for (Card card : hand) {
-            if (!((card.getMark() == firstMark) || card.getNumber() == CardNumber.JOKER)) {
+            if (!((card.getSuit() == firstMark) || card.getNumber() == CardNumber.JOKER)) {
                 flush = false;
                 break;
             }
@@ -74,7 +74,7 @@ class Poker {
         }
         if (straight) {
             //ストレート判定
-            return new Result(4, firstNumber, hand.get(hand.size() - 1).getMark());
+            return new Result(4, firstNumber, hand.get(hand.size() - 1).getSuit());
         }
 
 
