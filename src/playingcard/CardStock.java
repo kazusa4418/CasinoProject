@@ -37,7 +37,7 @@ public class CardStock extends ArrayList<Card> {
     public CardStock(int joker_number) {
         //52枚分のカードの各インスタンスを作成し、リストに格納する
         CardNumber[] numbers = CardNumber.values();
-        for (int i = 0; i < 13; i++) {
+        for (int i = 1; i < numbers.length; i++) {
             this.add(new Card(numbers[i], CardSuit.SPADE));
             this.add(new Card(numbers[i], CardSuit.HEART));
             this.add(new Card(numbers[i], CardSuit.DIAMOND));

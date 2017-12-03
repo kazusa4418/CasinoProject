@@ -80,7 +80,7 @@ public class BlackJackManager {
         System.out.println("ディーラーの手札:");
         com.showHand("runBlackJack");
         writeLine();
-        printer.println();
+        printer.pleaseEnter();
 
         //行う行動を選択させる
         String action = act(BlackJack.canSplit(pl.getHand()), BlackJack.canInsurance(com.getHand()));

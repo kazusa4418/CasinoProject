@@ -2,6 +2,7 @@ package casino;
 
 import util.Checker;
 import util.ConsoleControl;
+import util.Printer;
 import util.Save;
 
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.Scanner;
 
 public class Main {
+    public static Printer printer = new Printer();
     //readされたセーブファイルのナンバーを格納する
     public static int fileNumber = 0;
 
@@ -68,9 +70,8 @@ public class Main {
         //入力された値を用いてインスタンスを作る
         PlayData newData = new PlayData(name);
         Save.writeFile(newFile, newData);
-        System.out.println("セーブファイルを作成しました。");
+        printer.println("セーブファイルを作成しました。");
 
-        ConsoleControl.sleep(2000);
         ConsoleControl.clearScreen();
         menu();
     }
@@ -90,9 +91,8 @@ public class Main {
         fileNumber = index;
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(readFile));) {
             PlayData readData = (PlayData) ois.readObject();
-            System.out.println("セーブデータのロードに成功しました。\n");
+            printer.println("セーブデータのロードに成功しました。\n");
 
-            ConsoleControl.sleep(2000);
             ConsoleControl.clearScreen();
 
             return readData;

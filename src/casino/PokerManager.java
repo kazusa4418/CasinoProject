@@ -73,7 +73,6 @@ public class PokerManager {
             case LOSE:
                 printer.println("あなたの負けです。");
                 printer.println(betChips + "枚のチップを失いました。");
-                pl.lostChips(betChips);
                 break;
             case DRAW:
                 printer.println("引き分けです。");

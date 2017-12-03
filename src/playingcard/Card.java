@@ -36,7 +36,7 @@ public class Card {
      * @param suit   - カードのマークを指定するint型変数 0-4まで使用し4はJOKER
      * @throws java.lang.ArrayIndexOutOfBoundsException 範囲外の値が引数に指定されたときに発生します。
      * @deprecated 範囲外の引数が与えられると正しく処理できません。
-     * 別のコンストラクターを使用することを推奨します。
+     *             別のコンストラクターを使用することを推奨します。
      */
     public Card(int number, int suit) {
         CardNumber[] numbers = CardNumber.values();
