@@ -21,12 +21,10 @@ public class PokerManager {
     //カードのストック
     public static CardStock stock = new CardStock();
     //プレイヤー
-    private static Player pl;
-    private static ComPlayer com;
+    private Player pl = Player.getInstance();
+    private ComPlayer com = ComPlayer.getInstance();
 
-    public PokerManager(Player pl, ComPlayer com) {
-        this.pl = pl;
-        this.com = com;
+    public PokerManager() {
     }
 
     public void runGame() {
@@ -91,12 +89,8 @@ public class PokerManager {
             printer.println("残念だけど、この世界ではチップがないと遊べないんだ。");
             printer.println("セーブデータを消させてもらうね！");
             printer.println("(セーブデータが削除されます。)\n(まだ遊びたいならば再度セーブデータを作成してください。)");
-            if (pl.getPlayData().isGUEST()) {
-                pl = null;
-                Main.menu();
-            }
-            Save.deleteFile(Main.fileNumber);
-            Main.menu();
+            //Save.deleteFile();
+            //Main.menu();
         }
 
         System.out.print("\n行動を選んでください\n\n1: もう一度\n2: タイトルへ戻る\n> ");
@@ -108,7 +102,7 @@ public class PokerManager {
             System.out.println("タイトルへ戻ります");
             ConsoleControl.sleep(2000);
             ConsoleControl.clearScreen();
-            Title.title(pl, com);
+            //Title.title(pl, com);
         }
     }
 

@@ -2,13 +2,10 @@ package casino;
 
 import menu.Callback;
 import menu.Menu;
+import util.Checker;
 import util.InputScanner;
 import util.Printer;
 import util.Save;
-
-import java.util.Scanner;
-
-import static casino.PlayDataSample.setInstance;
 
 public class Main implements Callback {
     //入出力
@@ -16,8 +13,8 @@ public class Main implements Callback {
     private Printer printer = new Printer();
     //メニューを管理する
     private Menu menu = new Menu();
-    //プレイヤーデータ
-    private PlayDataSample data = PlayDataSample.getInstance();
+    //プレイヤー
+    private Player pl = Player.getInstance();
     //title
     private Title title = new Title();
 
@@ -31,7 +28,9 @@ public class Main implements Callback {
     }
 
     public void start() {
-        showMenu();
+        while(true) {
+            showMenu();
+        }
     }
 
     private void showMenu() {
@@ -51,31 +50,44 @@ public class Main implements Callback {
     public void callback(int no) {
         switch(no) {
             case 1:
-                createNewData();
+                PlayData pd = createNewData();
+                pl.setPlayData(pd);
                 title.start();
                 break;
             case 2:
+                pd = readFile();
+                pl.setPlayData(pd);
+                title.start();
                 break;
             case 3:
-                readFile();
+                deleteFile();
                 break;
             case 4:
                 printer.println("ゲームを終了します。");
                 System.exit(0);
         }
     }
-    private void readFile() {
-        Save.showFiles();
-        System.out.print("どのセーブファイルを読み込みますか？(数字で入力)\n> ");
-        int index = sc.scanInt();
-        PlayDataSample.setInstance((PlayDataSample)Save.readFile(Save.getFile(index)));
+
+    private PlayData createNewData(){
+        printer.println("新規セーブデータを作成します。");
+        PlayData pd = new PlayData();
+        System.out.print("プレイヤーネームを入力してください(半角英数字)\n> ");
+        pd.setName(sc.scanLine("[0-9a-zA-Z]+"));
+        printer.println("セーブデータの作成に成功しました。");
+        return pd;
     }
 
-    private void createNewData() {
-        printer.println("新規セーブデータを作成します。");
-        PlayDataSample newData = PlayDataSample.getInstance().setClear();
-        System.out.print("プレイヤーネームを入力してください(半角英数字)\n> ");
-        newData.setName(sc.scanLine("[0-9a-zA-Z]+"));
-        printer.println("セーブデータの作成に成功しました。");
+    private PlayData readFile() {
+        int size = Save.showFiles();
+        System.out.print("どのセーブファイルを読み込みますか？(数字で入力)\n> ");
+        int index = Checker.numberCheck(sc.scanLine(), size);
+        return (PlayData)Save.readFile(Save.getFile(index));
+    }
+
+    private void deleteFile() {
+        int size = Save.showFiles();
+        System.out.println("どのセーブファイルを削除しますか？(数字で入力)\n> ");
+        int index = Checker.numberCheck(sc.scanLine(), size);
+        Save.getFile(index).delete();
     }
 }

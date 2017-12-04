@@ -4,26 +4,47 @@ import menu.Callback;
 import menu.Menu;
 
 public class Title implements Callback {
-    //プレイヤーインスタンス
-    private Player pl = Player.getInstance();
-    private ComPlayer com = ComPlayer.getInstance();
     //メニュー
     private Menu menu = new Menu();
+    //プレイヤー
+    private Player pl = Player.getInstance();
 
-    public Title() {
+    Title() {
         addMenu();
     }
 
     public void start() {
-        System.out.println("タイトルメソッドがコールされました。");
+        do {
+            System.out.println("------------------------------");
+            menu.show();
+            System.out.println("------------------------------");
+            menu.select();
+        } while (!SceneManager.callToMenu);
+        SceneManager.callToMenu = false;
+        
 
     }
 
     private void addMenu() {
-        menu.addMenu(1, "")
+        menu.addMenu(1, "ブラックジャック", this);
+        menu.addMenu(2, "ポーカー", this);
+        menu.addMenu(3, "プレイデータを参照", this);
+        menu.addMenu(4, "メニューへ戻る", this);
     }
 
     public void callback(int id) {
-        //
+        switch (id) {
+            case 1:
+                BlackJackManager bm = new BlackJackManager();
+                bm.runGame();
+            case 2:
+                PokerManager pm = new PokerManager();
+                pm.runGame();
+            case 3:
+                pl.showInfo();
+            case 4:
+                SceneManager.callToMenu = true;
+
+        }
     }
 }

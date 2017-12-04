@@ -14,9 +14,9 @@ public class Player {
     //インスタンス
     private static Player pl = new Player();
     //出力
-    Printer printer = new Printer();
+    private Printer printer = new Printer();
     //プレイヤーネームや所有チップ数など保存してあるクラス
-    private PlayData myData = PlayData.getInstance();
+    private PlayData myData;
     //BETしたチップを保存しておく
     int betChips = 0;
     //手札
@@ -31,13 +31,16 @@ public class Player {
         return pl;
     }
 
-    public void showPlayData() {
+    public void setPlayData(PlayData pd) {
+        this.myData = pd;
+    }
+
+    public void showInfo() {
         System.out.println("******************************\n");
         System.out.println("プレイヤーネーム: " + this.myData.getName());
         System.out.println("所持チップ数: " + this.myData.getChips());
         System.out.println("プレイ時間: " + this.myData.getPlayTime());
         printer.println("\n******************************");
-
     }
 
     public Hand getHand() {
