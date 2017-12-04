@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class BlackJackManager {
+public class BlackJackManager implements Manager {
     private static Printer printer = new Printer();
     private static Scanner sc = new Scanner(System.in);
     private static Map<CardNumber, Integer> numbers = new HashMap<>();
@@ -87,14 +87,15 @@ public class BlackJackManager {
         //action‚ÉŠi”[‚³‚ê‚Ä‚¢‚é•¶š—ñ‚©‚çs‚¤ˆ—‚ğŒˆ‚ß‚é
         switch (action) {
             case "HIT":
-                pl.runHit();
+                pl.draw();
                 runAction();
                 return;
             case "STAND":
                 System.out.println("‚¢‚´AŸ•‰I");
                 return;
             case "DOUBLE":
-                pl.runDouble();
+                pl.setBetChips(pl.getBetChips() * 2);
+                pl.draw();
                 runAction();
                 return;
             case "SURRENDER":

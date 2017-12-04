@@ -1,6 +1,6 @@
 package casino;
 
-import data.Data;
+import util.Data;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ public class PlayData implements Serializable, Data {
     private long chips;               //プレイヤーの所有するチップ
     private long time;                //プレイヤーのプレイ時間
 
-    public PlayData() {
+    PlayData() {
         this.name = "NULL";
         this.chips = 1000;
         this.time = 0;

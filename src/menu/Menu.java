@@ -31,7 +31,6 @@ public class Menu {
 
     private int input() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("(”Žš‚Å“ü—Í)\n> ");
         int no = Checker.numberCheck(br.readLine(), items.size());
         System.out.println();
         return no;

@@ -12,7 +12,7 @@ import util.Save;
 
 import java.util.Scanner;
 
-public class PokerManager {
+public class PokerManager implements Manager {
     private enum IsWinner {WIN, LOSE, DRAW}
 
     private static Scanner sc = new Scanner(System.in);
@@ -56,7 +56,7 @@ public class PokerManager {
             System.out.println((i + 1) + ": " + pl.getHand().get(i));
         }
         //“ü‚ê‘Ö‚¦‚éèD‚ğ‘I‚Ô
-        pl.handChengeOnPoker();
+        pl.handChenge();
         //ºİËß­°À‚ªèD‚ğ“ü‚ê‘Ö‚¦‚é
         com.handChengeOnPoker();
         //ƒvƒŒƒCƒ„[‚ÆºİËß­°À‚ÌèD‚ğg‚Á‚ÄŸ•‰‚·‚é
@@ -164,7 +164,7 @@ public class PokerManager {
         System.out.println("******************************");
         System.out.println("SHOWDOWN!!\n");
         System.out.print("‚ ‚È‚½‚ÌèD:");
-        pl.showHand();
+        pl.showHand("WITH_INDEX");
         showRole(plResult);
         System.out.println("\n");
         System.out.print("ºİËß­°À‚ÌèD:");

@@ -1,4 +1,4 @@
-package data;
+package util;
 
 public interface Data {
 
