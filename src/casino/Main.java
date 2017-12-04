@@ -58,7 +58,7 @@ public class Main {
         //プレイヤーとコンピュータのインスタンスを作成
         Player pl = new Player(data);
         ComPlayer com = new ComPlayer();
-        Title.start(pl, com);
+        Title.title(pl, com);
     }
 
     public static void createNewSaveFile() {

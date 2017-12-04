@@ -108,7 +108,7 @@ public class PokerManager {
             System.out.println("ƒ^ƒCƒgƒ‹‚Ö–ß‚è‚Ü‚·");
             ConsoleControl.sleep(2000);
             ConsoleControl.clearScreen();
-            Title.start(pl, com);
+            Title.title(pl, com);
         }
     }
 

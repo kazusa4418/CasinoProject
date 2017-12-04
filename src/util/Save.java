@@ -191,7 +191,7 @@ public class Save {
      * @throws ClassNotFoundException 指定された名前のクラス定義が見つからなかった場合
      * @return 読み込んだData型オブジェクトを返却します。
      */
-    public static Data readSaveFile(File file) {
+    public static Data readFile(File file) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));) {
             Data readData = (Data) ois.readObject();
             return readData;
