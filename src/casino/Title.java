@@ -1,49 +1,29 @@
 package casino;
 
-import util.ConsoleControl;
-import util.Save;
-import util.Checker;
-import java.io.File;
-import java.util.Scanner;
+import menu.Callback;
+import menu.Menu;
 
-public class Title {
-    private static Scanner sc = new Scanner(System.in);
+public class Title implements Callback {
+    //プレイヤーインスタンス
+    private Player pl = Player.getInstance();
+    private ComPlayer com = ComPlayer.getInstance();
+    //メニュー
+    private Menu menu = new Menu();
 
-    public static void title(Player pl, ComPlayer com) {
-        System.out.println("なんのゲームで遊びますか？\n");
-        System.out.print("1:ブラックジャック\n2:ポーカー\n3:プレイデータを参照\n4:タイトルへ戻る\n> ");
-        int command = Integer.parseInt(Checker.stringCheck(sc.nextLine(), "[1234]{1}"));
-        if (command == 1) {
-            BlackJackManager jack = new BlackJackManager(pl, com);
-            jack.runGame();
-            title(pl, com);
-        } else if (command == 2) {
-            PokerManager poker = new PokerManager(pl, com);
-            poker.runGame();
-            title(pl, com);
-        } else if (command == 3) {
-            pl.showPlayData();
-            title(pl, com);
-        } else {
-            //タイトルへ戻る前にセーブ処理を行う
-            if (pl.getPlayData().isGUEST()) {
-                //GUESTであればセーブを行わずインスタンスを破棄する
-                pl = null;
-                System.out.println("タイトルへ戻ります。");
+    public Title() {
+        addMenu();
+    }
 
-                ConsoleControl.sleep(2000);
-                ConsoleControl.clearScreen();
-                Main.menu();
-            }
-            System.out.println("セーブしてタイトルへ戻ります。");
-            File file = Save.getFile(Main.fileNumber);
-            PlayData myData = pl.getPlayData();
-            Save.writeFile(file, myData);
+    public void start() {
+        System.out.println("タイトルメソッドがコールされました。");
 
-            ConsoleControl.sleep(2000);
-            ConsoleControl.clearScreen();
+    }
 
-            Main.menu();
-        }
+    private void addMenu() {
+        menu.addMenu(1, "")
+    }
+
+    public void callback(int id) {
+        //
     }
 }

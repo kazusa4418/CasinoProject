@@ -11,10 +11,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class Player {
-    //system
+    //インスタンス
+    private static Player pl = new Player();
+    //出力
     Printer printer = new Printer();
     //プレイヤーネームや所有チップ数など保存してあるクラス
-    private PlayData myData;
+    private PlayData myData = PlayData.getInstance();
     //BETしたチップを保存しておく
     int betChips = 0;
     //手札
@@ -22,9 +24,11 @@ public class Player {
     //SPLITしたときのみ使われる
     private Hand splitHand;
 
-    public Player(PlayData myData) {
-        //セーブデータの読み込み
-        this.myData = myData;
+    private Player() {
+    }
+
+    public static Player getInstance() {
+        return pl;
     }
 
     public void showPlayData() {

@@ -5,7 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ComPlayer {
+    //インスタンス
+    private static ComPlayer com = new ComPlayer();
+    //手札
     private Hand hand = new Hand();
+
+    private ComPlayer() {}
+
+    public static ComPlayer getInstance() {
+        return com;
+    }
 
     public Hand getHand() {
         return this.hand;
