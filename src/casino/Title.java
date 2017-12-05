@@ -21,7 +21,7 @@ public class Title implements Callback {
             menu.select();
         } while (!SceneManager.callToMenu);
         SceneManager.callToMenu = false;
-        
+
 
     }
 
